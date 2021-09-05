@@ -1,7 +1,7 @@
 # -*-coding:utf-8-*-
 from login import Login
 from send_gmail import send_gmail
-import time, json
+import time, json,logging
 
 
 def readConfig():
@@ -16,7 +16,7 @@ def readConfig():
 if __name__ == '__main__':
     rc = 0
     config = readConfig()
-    print(config)
+    logging.info(config)
     for t in range(10):
         rc, msg = Login(config['dbId'], config['dbPassword'], config['openKey'], config['unionId'])
         if rc == 0:
