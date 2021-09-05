@@ -10,7 +10,11 @@ There is the content of this secret. Some arguments need network packet grabbing
 {
   "dbId": "<Your public database ID>",
   "dbPassword": "<Your public database Password>",
-  "openKey": "<Your openkey (Need network packet grabbing)>",
-  "unionId": "<Your unionId (Need network packet grabbing)>"
+  "openKey": "<Your wechat openkey (Need network packet grabbing)>",
+  "unionId": "<Your wechat unionId (Need network packet grabbing)>",
+  "mail_host": "<SMTP Server Address>",
+  "mail_sender": "<Sender Email Address>",
+  "mail_license": "<Sender Email Password or licence>",
+  "mail_receiver": "<Receiver Email Address>"
 }
 ```

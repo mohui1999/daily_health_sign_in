@@ -1,5 +1,5 @@
 # -*-coding:utf-8-*-
-import smtplib
+import smtplib,json
 import email
 # 负责构造文本
 from email.mime.text import MIMEText
@@ -8,16 +8,6 @@ from email.mime.image import MIMEImage
 # 负责将多个对象集合起来
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
-
-# SMTP服务器,这里使用163邮箱
-mail_host = "smtp.qq.com"
-# 发件人邮箱
-mail_sender = "zachary.xia@qq.com"
-# 邮箱授权码,注意这里不是邮箱密码,如何获取邮箱授权码,请看本文最后教程
-mail_license = "alyjecwokllubgeb"
-# 收件人邮箱，可以为多个收件人
-mail_receivers = ["51215902107@stu.ecnu.edu.cn"]
-
 
 # mm = MIMEMultipart('related')
 #
@@ -71,7 +61,27 @@ mail_receivers = ["51215902107@stu.ecnu.edu.cn"]
 # print("邮件发送成功")
 # # 关闭SMTP对象
 # stp.quit()
+
+def readConfig():
+    try:
+        with open('./config.json', 'r') as fp:
+            config = json.load(fp)
+            return config
+    except Exception as e:
+        print(e)
+
+
 def send_gmail(subj, text):
+
+    config = readConfig()
+    # SMTP服务器,这里使用163邮箱
+    mail_host = config["mail_host"]
+    # 发件人邮箱
+    mail_sender = config["mail_sender"]
+    # 邮箱授权码,注意这里不是邮箱密码
+    mail_license = config["mail_license"]
+    # 收件人邮箱
+    mail_receiver = config["mail_receiver"]
     mm = MIMEMultipart('related')
 
     # 邮件主题
@@ -79,7 +89,7 @@ def send_gmail(subj, text):
     # 设置发送者,注意严格遵守格式,里面邮箱为发件人邮箱
     mm["From"] = "Robot<%s>" % mail_sender
     # 设置接受者,注意严格遵守格式,里面邮箱为接受者邮箱
-    mm["To"] = "<%s>" % mail_receivers[0]
+    mm["To"] = "<%s>" % mail_receiver
     # 设置邮件主题
     mm["Subject"] = Header(subject_content, 'utf-8')
 
@@ -95,7 +105,7 @@ def send_gmail(subj, text):
     # 登录邮箱，传递参数1：邮箱地址，参数2：邮箱授权码
     stp.login(mail_sender, mail_license)
     # 发送邮件，传递参数1：发件人邮箱地址，参数2：收件人邮箱地址，参数3：把邮件内容格式改为str
-    stp.sendmail(mail_sender, mail_receivers, mm.as_string())
+    stp.sendmail(mail_sender, mail_receiver, mm.as_string())
     print("邮件发送成功")
     # 关闭SMTP对象
     stp.quit()
