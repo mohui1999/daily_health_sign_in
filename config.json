@@ -1,10 +1,1 @@
-{
-  "dbId": "<Your public database ID>",
-  "dbPassword": "<Your public database Password>",
-  "openKey": "<Your wechat openkey (Need network packet grabbing)>",
-  "unionId": "<Your wechat unionId (Need network packet grabbing)>",
-  "mail_host": "<SMTP Server Address>",
-  "mail_sender": "<Sender Email Address>",
-  "mail_license": "<Sender Email Password or licence>",
-  "mail_receiver": "<Receiver Email Address>"
-}
+
