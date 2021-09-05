@@ -1,0 +1,6 @@
+{
+  "dbId": "<Your public database ID>",
+  "dbPassword": "<Your public database Password>",
+  "openKey": "<Your openkey (Need network packet grabbing)>",
+  "unionId": "<Your unionId (Need network packet grabbing)>"
+}
