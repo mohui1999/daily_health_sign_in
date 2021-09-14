@@ -15,17 +15,21 @@ def readConfig():
 
 
 def qqpush(ktcontent):
-    print("开始推送")
-    # https://qmsg.zendee.cn/send/eec4ec430091653358b209eb65147321
+    print("开始qq推送")
+    config = readConfig()
+    qqtoken = config['qqpushToken']
+    qqnumber = config['qqnumber']
     # GET/POST，Content-Type：application/x-www-form-urlencoded
-    kturl = 'https://qmsg.zendee.cn/send/eec4ec430091653358b209eb65147321'
+    kturl = 'https://qmsg.zendee.cn/send/'+qqtoken
 
-    requests.get(kturl, params={"msg": ktcontent, "qq": '2381599284'})
+    requests.get(kturl, params={"msg": ktcontent, "qq": qqnumber})
 
 
 def wxpush(title, content):
-    # api = "https://sc.ftqq.com/SCU121100Teb2e699776ca6fffe063a0b428edc6bc5f98c9be71b62.send"
-    api = "https://sctapi.ftqq.com/SCT73890T3gd2FF94ZYumsIOJ4YMsanlj.send"
+    print("开始wx推送")
+    config = readConfig()
+    wxtoken = config['wxpushToken']
+    api = "https://sctapi.ftqq.com/"+wxtoken+".send"
     data1 = {
         "title": title,
         "desp": content
